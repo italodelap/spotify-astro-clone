@@ -1,0 +1,25 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import { allPlaylists, songs } from "@/lib/data";
+
+import Playlist from "@/components/Playlist/Playlist.astro";
+import PlaylistNotFound from "@/components/Playlist/PlaylistNotFound.astro";
+
+const { id } = Astro.params;
+
+const playlist = allPlaylists.find((playlist) => playlist.id === id);
+const playlistSongs = songs.filter(
+  (song) => song.albumId === playlist?.albumId,
+);
+---
+
+<Layout title="Spotify clone">
+  {
+    !playlist ? (
+      <PlaylistNotFound />
+    ) : (
+      <Playlist playlist={playlist} playlistSongs={playlistSongs} />
+    )
+  }
+</Layout>
