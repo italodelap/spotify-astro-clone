@@ -3,7 +3,10 @@ import HomeIcon from "@/icons/Home.astro";
 import LibraryIcon from "@/icons/Library.astro";
 import SearchIcon from "@/icons/Search.astro";
 
+import { playlists } from "@/lib/data";
+
 import AsideMenuItem from "./AsideMenu/AsideMenuItem.astro";
+import AsideMenuCard from "./AsideMenu/AsideMenuCard.astro";
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
@@ -14,7 +17,7 @@ import AsideMenuItem from "./AsideMenu/AsideMenuItem.astro";
          Inicio
       </AsideMenuItem>
 
-      <AsideMenuItem href="/#">
+      <AsideMenuItem href="/">
         <SearchIcon />
          Buscar
       </AsideMenuItem>
@@ -27,6 +30,8 @@ import AsideMenuItem from "./AsideMenu/AsideMenuItem.astro";
         <LibraryIcon />
          Tu biblioteca
       </AsideMenuItem>
+
+      {playlists.map((playlist) => <AsideMenuCard playlist={playlist} />)}
     </ul>
   </div>
 </nav>
