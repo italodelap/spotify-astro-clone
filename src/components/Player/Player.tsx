@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { PauseIcon, PlayIcon } from ".";
+import { CurrentSong, PauseIcon, PlayIcon, VolumeControl } from ".";
 
 export function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -38,7 +38,7 @@ export function Player() {
       </div>
 
       <div className="grid place-content-center">
-        Volume control ...
+        <VolumeControl />
       </div>
 
       <audio ref={audioRef} />
