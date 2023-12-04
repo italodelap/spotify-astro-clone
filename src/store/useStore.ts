@@ -1,0 +1,12 @@
+import { create } from "zustand";
+
+import { type State } from "./store";
+
+export const useStore = create<State>((set) => ({
+  isPlaying: false,
+  currentMusic: { playlist: null, song: null, songs: [] },
+  volume: 1,
+  setVolume: (volume) => set({ volume }),
+  setIsPlaying: (isPlaying) => set({ isPlaying }),
+  setCurrentMusic: (currentMusic) => set({ currentMusic }),
+}));
