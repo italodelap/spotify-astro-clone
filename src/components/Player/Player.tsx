@@ -1,47 +1,52 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
+import { useStore } from "@/store/useStore";
 import { CurrentSong, PauseIcon, PlayIcon, VolumeControl } from ".";
 
 export function Player() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio("") : undefined
-  );
+  const currentMusic = useStore((state) => state.currentMusic);
+  const isPlaying = useStore((state) => state.isPlaying);
+  const volume = useStore((state) => state.volume);
+  const setIsPlaying = useStore((state) => state.setIsPlaying);
+
+  const audioRef = useRef<HTMLAudioElement>(typeof Audio !== "undefined" ? new Audio() : null);
 
   useEffect(() => {
-    audioRef.current.src = "/music/1/01.mp3";
-  }, [])
+    const audio = audioRef.current!;
+    isPlaying ? audio.play() : audio.pause();
+  }, [isPlaying]);
 
-  const handleClick = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-      audioRef.current.volume = 0.1;
+  useEffect(() => {
+    audioRef.current!.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    const { song, playlist } = currentMusic
+    if (song) {
+      audioRef.current!.src = `/music/${playlist?.id}/0${song.id}.mp3`;
+      audioRef.current!.volume = volume;
+      audioRef.current!.play();
     }
-
-    setIsPlaying(!isPlaying);
-  }
+  }, [currentMusic]);
 
   return (
     <div className="flex flex-row justify-between w-full px-1 z-50">
       <div className="w-[200px]">
-        Current song...
+        <CurrentSong {...currentMusic.song} />
       </div>
 
       <div className="grid place-content-center gap-4 flex-1">
         <div className="flex justify-center flex-col items-center">
-          <button className="bg-white rounded-full p-2" onClick={handleClick}>
-            {isPlaying ? <PauseIcon /> : <PlayIcon />}
+          <button className="bg-white rounded-full p-2" onClick={() => setIsPlaying(!isPlaying)}>
+            {isPlaying ? <PauseIcon className="" /> : <PlayIcon className="" />}
           </button>
+          <audio ref={audioRef} />
         </div>
       </div>
 
       <div className="grid place-content-center">
         <VolumeControl />
       </div>
-
-      <audio ref={audioRef} />
     </div>
   );
 }

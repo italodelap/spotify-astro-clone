@@ -1,3 +1,4 @@
+export * from "./CurrentSong";
 export * from "./PauseIcon";
 export * from "./PlayIcon";
 export * from "./Player";
