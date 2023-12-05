@@ -11,9 +11,10 @@ export function Player() {
 
   const audioRef = useRef<HTMLAudioElement>(typeof Audio !== "undefined" ? new Audio() : null);
 
+  const playMusic = () => { setTimeout(() => { audioRef.current!.play() }, 1) }
+
   useEffect(() => {
-    const audio = audioRef.current!;
-    isPlaying ? audio.play() : audio.pause();
+    isPlaying ? playMusic() : audioRef.current!.pause();
   }, [isPlaying]);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export function Player() {
     if (song) {
       audioRef.current!.src = `/music/${playlist?.id}/0${song.id}.mp3`;
       audioRef.current!.volume = volume;
-      audioRef.current!.play();
+      playMusic();
     }
   }, [currentMusic]);
 
