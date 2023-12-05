@@ -1,7 +1,7 @@
 ---
 import type { Playlist, Song } from "@/lib/data";
 
-// import { CardPlayButton } from "@/components/CardPlayButton"
+import { CardPlayButton } from "@/components/CardPlayButton";
 import PlaylistSongsTable from "./PlaylistSongsTable.astro";
 
 interface Props {
@@ -53,7 +53,7 @@ const { playlist, playlistSongs } = Astro.props;
   </header>
 
   <div class="pl-6 pt-6">
-    {/* <CardPlayButton client:load id={id} size="large" /> */}
+    <CardPlayButton client:load id={playlist.id} size="large" />
   </div>
 
   <div class="relative z-10 px-6 pt-10"></div>
