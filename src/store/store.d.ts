@@ -1,4 +1,4 @@
-import { type Playlist, type Song } from "@/lib/data";
+import type { Playlist, Song } from "@/lib/data";
 
 interface CurrentMusic {
   playlist: null | Playlist;

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { type State } from "./store.d";
+import type { State } from "./store.d";
 
 export const useStore = create<State>((set) => ({
   isPlaying: false,
