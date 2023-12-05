@@ -95,6 +95,58 @@ const { title } = Astro.props;
 				font-style: normal;
 				font-display: swap;
 			}
+
+			/*Range Reset*/
+			input[type="range"] {
+				-webkit-appearance: none;
+				appearance: none;
+				background: transparent;
+				cursor: pointer;
+			}
+
+			/* Removes default focus */
+			input[type="range"]:focus {
+				outline: none;
+			}
+
+			/* slider track */
+			input[type="range"]::-webkit-slider-runnable-track {
+				background-color: #1f2937;
+				border-radius: 0.5rem;
+				height: 0.35rem;
+			}
+
+			/* slider thumb */
+			input[type="range"]::-webkit-slider-thumb {
+				-webkit-appearance: none; /* Override default look */
+				appearance: none;
+				margin-top: -3px; /* Centers thumb on the track */
+
+				/*custom styles*/
+				width: 0.75rem;
+				height: 0.75rem;
+				border-radius: 50%;
+				background-color: white;
+			}
+
+			/* slider track */
+			input[type="range"]::-moz-range-track {
+				background-color: #1f2937;
+				border-radius: 0.5rem;
+				height: 0.35rem;
+			}
+
+			/* slider thumb */
+			input[type="range"]::-moz-range-thumb {
+				border: none; /*Removes extra border that FF applies*/
+				border-radius: 0; /*Removes default border-radius that FF applies*/
+
+				/*custom styles*/
+				width: 0.75rem;
+				height: 0.75rem;
+				border-radius: 50%;
+				background-color: white;
+			}
 		</style>
 	</body>
 </html>

@@ -21,7 +21,7 @@ export function VolumeControl() {
   }
 
   return (
-    <div className="flex justify-center gap-x-2 text-white">
+    <div className="flex justify-center items-center gap-x-2 text-white">
       <button className="opacity-70 hover:opacity-100 transition" onClick={handleClickVolumeIcon}>
         {isVolumeSilenced
           ? <VolumeSilenceIcon />
@@ -32,17 +32,13 @@ export function VolumeControl() {
               : <VolumeHighIcon />
         }
       </button>
-
-      <Slider
-        defaultValue={[100]}
-        max={100}
+      <input
         min={0}
-        value={[volume * 100]}
+        max={100}
+        type="range"
         className="w-[95px]"
-        onValueChange={(value) => {
-          const [newVolume] = value;
-          setVolume(newVolume / 100);
-        }}
+        value={volume * 100}
+        onInput={(evt) => { setVolume(Number(evt.currentTarget.value) / 100) }}
       />
     </div>
   );
