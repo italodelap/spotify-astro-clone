@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import { useStore } from "@/store/useStore";
 
-import { Slider, VolumeHighIcon, VolumeLowIcon, VolumeMediumIcon, VolumeSilenceIcon } from ".";
+import { VolumeHighIcon, VolumeLowIcon, VolumeMediumIcon, VolumeSilenceIcon } from ".";
 
 export function VolumeControl() {
   const volume = useStore((state) => state.volume);
